@@ -17,40 +17,62 @@ public class LandingPage extends AbstractPage {
         super(driver);
     }
 
-    @FindBy(name = "username")
+    @FindBy(css = "input[placeholder='Username']")
     private WebElement txtUsername;
 
-    @FindBy(name = "password")
+    @FindBy(css = "input[placeholder='Password']")
     private WebElement txtPassword;
 
     @FindBy(css = ".orangehrm-login-button")
     private WebElement btnLogin;
 
+    @FindBy(css = ".oxd-alert--error")
+    private WebElement errInvalidCred;
+
     @Override
-    protected boolean isAt() {
+    public boolean isAt() {
         this.wait.until(ExpectedConditions.visibilityOf(txtUsername));
-        log.info("Display Status of Landing Page :: {}",txtUsername.isDisplayed());
+        log.info("Display Status of Landing Page :: {}", txtUsername.isDisplayed());
         return txtUsername.isDisplayed();
     }
 
 
+    public String getInvalidCredError() {
+        this.wait.until(ExpectedConditions.visibilityOf(errInvalidCred));
+        String text = errInvalidCred.getText();
+        log.info("Error is {}", text);
+        return text;
+    }
+
     @SneakyThrows
-    public <T> T clkLoginButton(Class<T> classz) {
+    public void clkLoginButton() {
         btnLogin.click();
         log.info("Clicked On Login Button");
-        return classz.getDeclaredConstructor().newInstance();
+
     }
 
     public LandingPage setUsername(String text) {
         this.txtUsername.sendKeys(text);
-        log.info("Username entered is {}",text);
+        log.info("Username entered is {}", text);
         return this;
     }
 
     public LandingPage setPassword(String text) {
         this.txtPassword.sendKeys(text);
-        log.info("Password entered is {}",text);
+        log.info("Password entered is {}", text);
         return this;
+    }
+
+    public String getPageTitle() {
+        final String title = driver.getTitle();
+        log.info("Title Grabbed is {}", title);
+        return title;
+    }
+
+    public String getPageURL() {
+        final String url = driver.getCurrentUrl();
+        log.info("URL Grabbed is {}", url);
+        return url;
     }
 
 }
