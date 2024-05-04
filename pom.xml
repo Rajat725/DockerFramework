@@ -21,9 +21,18 @@
         <webdriver.manager.version>5.8.0</webdriver.manager.version>
         <testng.version>7.9.0</testng.version>
         <jackson.version>2.17.0</jackson.version>
+        <lombok.version>1.18.32</lombok.version>
     </properties>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
