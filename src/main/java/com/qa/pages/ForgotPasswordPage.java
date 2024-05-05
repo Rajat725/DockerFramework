@@ -28,9 +28,9 @@ public class ForgotPasswordPage extends AbstractPage {
 
 
     @Override
-    protected boolean isAt() {
+    public boolean isAt() {
         this.wait.until(ExpectedConditions.visibilityOf(txtUsername));
-        log.info("Display Status of Landing Page :: {}", txtUsername.isDisplayed());
+        log.info("Display Status of ForgotPasswordPage  :: {}", txtUsername.isDisplayed());
         return txtUsername.isDisplayed();
     }
 
