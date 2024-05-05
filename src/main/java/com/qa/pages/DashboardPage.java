@@ -1,5 +1,6 @@
 package com.qa.pages;
 
+import com.qa.enums.Panel;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,6 +32,11 @@ public class DashboardPage extends AbstractPage {
         String text = titlePage.getText();
         log.info("Grabbed the Title :: {}",text);
         return text;
+    }
+
+    public void navigateToSection(Panel panel)
+    {
+        accessLeftPanelSwitch(true,panel);
     }
 
 }
