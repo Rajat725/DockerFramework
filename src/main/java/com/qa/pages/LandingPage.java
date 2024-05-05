@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
 
 public class LandingPage extends AbstractPage {
 
@@ -29,11 +28,21 @@ public class LandingPage extends AbstractPage {
     @FindBy(css = ".oxd-alert--error")
     private WebElement errInvalidCred;
 
+    @FindBy(css = ".orangehrm-login-forgot p")
+    private WebElement lnkForgotPassword;
+
     @Override
     public boolean isAt() {
         this.wait.until(ExpectedConditions.visibilityOf(txtUsername));
         log.info("Display Status of Landing Page :: {}", txtUsername.isDisplayed());
         return txtUsername.isDisplayed();
+    }
+
+    public ForgotPasswordPage clkForgotPassword()
+    {
+        this.lnkForgotPassword.click();
+        log.info("CLicked on Forgot PAssword");
+        return new ForgotPasswordPage(driver);
     }
 
 
