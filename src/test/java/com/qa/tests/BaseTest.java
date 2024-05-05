@@ -1,35 +1,20 @@
 package com.qa.tests;
 
+import com.qa.browser.LocalBrowser;
 import com.qa.driver.DriverManager;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.slf4j.Logger;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-    public void setUpBrowser(String name)
-    {
-        if(name.equalsIgnoreCase("chrome"))
-        {
-            WebDriverManager.chromedriver().setup();
-            DriverManager.setDriver(new ChromeDriver());
-        }
-        if(name.equalsIgnoreCase("edge"))
-        {
-            WebDriverManager.edgedriver().setup();
-            DriverManager.setDriver(new EdgeDriver());
-        }
+    @BeforeMethod(alwaysRun = true)
+    public void setUpBrowser() {
+        LocalBrowser.setUpBrowser("Chrome");
+        LocalBrowser.launchWebsite("https://opensource-demo.orangehrmlive.com/");
     }
 
-    public void launchWebsite(String url)
-    {
-        DriverManager.getDriver().get(url);
-    }
-
-    public void closeBrowser()
-    {
+    @AfterMethod(alwaysRun = true)
+    public void closeBrowser() {
         DriverManager.getDriver().quit();
     }
 
