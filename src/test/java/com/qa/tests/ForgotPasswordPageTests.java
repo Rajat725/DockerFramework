@@ -1,5 +1,6 @@
 package com.qa.tests;
 
+import com.qa.driver.DriverManager;
 import com.qa.pages.ForgotPasswordPage;
 import com.qa.pages.LandingPage;
 import org.assertj.core.api.Assertions;
@@ -11,7 +12,7 @@ public class ForgotPasswordPageTests extends BaseTest {
     public void validForgotPasswordCredentialsTests() {
         setUpBrowser("Chrome");
         launchWebsite("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        LandingPage landingPage = new LandingPage(getDriver());
+        LandingPage landingPage = new LandingPage(DriverManager.getDriver());
         Assertions.assertThat(landingPage.isAt()).isTrue();
         ForgotPasswordPage forgotPasswordPage = landingPage.clkForgotPassword();
         Assertions.assertThat(forgotPasswordPage.isAt()).isTrue();
@@ -26,7 +27,7 @@ public class ForgotPasswordPageTests extends BaseTest {
     public void validEmptyCredentialsTests() {
         setUpBrowser("Chrome");
         launchWebsite("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        LandingPage landingPage = new LandingPage(getDriver());
+        LandingPage landingPage = new LandingPage(DriverManager.getDriver());
         Assertions.assertThat(landingPage.isAt()).isTrue();
         ForgotPasswordPage forgotPasswordPage = landingPage.clkForgotPassword();
         Assertions.assertThat(forgotPasswordPage.isAt()).isTrue();
