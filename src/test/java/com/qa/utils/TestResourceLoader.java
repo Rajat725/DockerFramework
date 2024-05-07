@@ -1,5 +1,6 @@
 package com.qa.utils;
 
+import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,8 @@ public class TestResourceLoader {
 
     private static final Logger log = LoggerFactory.getLogger(TestResourceLoader.class);
 
-    public static InputStream getResource(String path) throws Exception {
+    @SneakyThrows
+    public static InputStream getResource(String path){
         log.info("reading resource from location: {}", path);
         //InputStream stream =  ResourceLoader.class.getClassLoader().getResourceAsStream(path);
         final InputStream stream = TestResourceLoader.class.getClassLoader().getResourceAsStream(path);
