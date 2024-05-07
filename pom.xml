@@ -111,7 +111,7 @@
                     <configuration>
                         <systemPropertyVariables>
                             <selenium.grid.enabled>true</selenium.grid.enabled>
-                            <browser>chrome</browser>
+<!--                            <browser>chrome</browser>-->
                         </systemPropertyVariables>
                         <suiteXmlFiles>
                             <file>suites-xml/testng.xml</file>

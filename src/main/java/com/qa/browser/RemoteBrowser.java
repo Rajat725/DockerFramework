@@ -17,14 +17,14 @@ public class RemoteBrowser {
     }
 
     @SneakyThrows
-    public static void setupBroswer() {
+    public static void setupBroswer(String browser) {
 
         Capabilities capabilities = null;
 
-        if (System.getProperty("browser").equalsIgnoreCase("chrome")) {
+        if (browser.equalsIgnoreCase("chrome")) {
             capabilities = new ChromeOptions();
         }
-        if (System.getProperty("browser").equalsIgnoreCase("edge")) {
+        if (browser.equalsIgnoreCase("edge")) {
             capabilities = new EdgeOptions();
         }
 

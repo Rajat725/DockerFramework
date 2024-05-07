@@ -18,7 +18,7 @@ public class BaseTest {
             LocalBrowser.setUpBrowser(browser);
             LocalBrowser.launchWebsite("https://opensource-demo.orangehrmlive.com/");
         } else {
-            RemoteBrowser.setupBroswer();
+            RemoteBrowser.setupBroswer(browser);
             RemoteBrowser.launchWebsite("https://opensource-demo.orangehrmlive.com/");
 
         }
