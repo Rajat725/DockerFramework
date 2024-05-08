@@ -3,6 +3,7 @@ package com.qa.tests;
 import com.qa.browser.LocalBrowser;
 import com.qa.browser.RemoteBrowser;
 import com.qa.driver.DriverManager;
+import com.qa.enums.ConfigKey;
 import com.qa.utils.ConfigReader;
 import org.testng.annotations.*;
 
@@ -16,14 +17,14 @@ public class BaseTest {
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
-    public void setUpBrowser(@Optional("Chrome") String browser) {
+    public void setUpBrowser(@Optional("chrome") String browser) {
 
-        if (System.getProperty("selenium.grid.enabled").equalsIgnoreCase("false")) {
+        if (ConfigReader.getValueFromKey(ConfigKey.SELENIUMGRIDENABLED).equalsIgnoreCase("false") ){
             LocalBrowser.setUpBrowser(browser);
-            LocalBrowser.launchWebsite("https://opensource-demo.orangehrmlive.com/");
+            LocalBrowser.launchWebsite(ConfigReader.getValueFromKey(ConfigKey.URL));
         } else {
-            RemoteBrowser.setupBroswer(browser);
-            RemoteBrowser.launchWebsite("https://opensource-demo.orangehrmlive.com/");
+            RemoteBrowser.setupBroswer(browser,ConfigReader.getValueFromKey(ConfigKey.HUBURL));
+            RemoteBrowser.launchWebsite(ConfigReader.getValueFromKey(ConfigKey.URL));
 
         }
 

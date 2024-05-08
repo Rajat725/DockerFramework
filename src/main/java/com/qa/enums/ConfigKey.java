@@ -5,5 +5,5 @@ public enum ConfigKey {
     SELENIUMGRIDENABLED,
     HUBHOST,
     HUBURL,
-    BROWSER
+    URL
 }

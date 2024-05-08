@@ -17,7 +17,7 @@ public class RemoteBrowser {
     }
 
     @SneakyThrows
-    public static void setupBroswer(String browser) {
+    public static void setupBroswer(String browser,String hubUrl) {
 
         Capabilities capabilities = null;
 
@@ -29,7 +29,7 @@ public class RemoteBrowser {
         }
 
 
-        URL url = new URL("http://localhost:4444");
+        URL url = new URL(hubUrl);
         DriverManager.setDriver(new RemoteWebDriver(url, capabilities));
 
     }
