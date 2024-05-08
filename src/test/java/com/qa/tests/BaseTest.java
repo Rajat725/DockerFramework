@@ -3,12 +3,16 @@ package com.qa.tests;
 import com.qa.browser.LocalBrowser;
 import com.qa.browser.RemoteBrowser;
 import com.qa.driver.DriverManager;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import com.qa.utils.ConfigReader;
+import org.testng.annotations.*;
 
 public class BaseTest {
+
+    @BeforeSuite
+    public void initConfigProperties()
+    {
+        ConfigReader.initialize();
+    }
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)

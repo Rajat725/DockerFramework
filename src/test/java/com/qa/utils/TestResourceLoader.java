@@ -21,10 +21,10 @@ public class TestResourceLoader {
         //InputStream stream =  ResourceLoader.class.getClassLoader().getResourceAsStream(path);
         final InputStream stream = TestResourceLoader.class.getClassLoader().getResourceAsStream(path);
         if (Objects.nonNull(stream)) {
-            log.info("Class Path");
+            log.info("Reading from Class Path");
             return stream;
         }
-        log.info("Project Path");
+        log.info("Reading from Project Path");
         return Files.newInputStream(Path.of(path));
     }
 

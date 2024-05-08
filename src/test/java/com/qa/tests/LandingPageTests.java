@@ -2,6 +2,7 @@ package com.qa.tests;
 
 import com.qa.driver.DriverManager;
 import com.qa.pages.LandingPage;
+import com.qa.utils.ConfigReader;
 import com.qa.utils.JsonReader;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.DataProvider;
@@ -68,6 +69,8 @@ public class LandingPageTests extends BaseTest {
         return new Object[]{jsonDataAsMap.get(0),jsonDataAsMap.get(1),jsonDataAsMap.get(2)};
 
     }
+
+
 
 
 }
