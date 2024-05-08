@@ -34,6 +34,7 @@ public class ConfigReader {
 
     public static String getValueFromKey(ConfigKey key) {
         String lowerCaseKey = key.toString().toLowerCase();
+        log.info(lowerCaseKey);
         log.info("Value for Key - {} is {}", lowerCaseKey, properties.get(lowerCaseKey).toString());
         return properties.get(lowerCaseKey).toString();
     }

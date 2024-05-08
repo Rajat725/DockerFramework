@@ -5,10 +5,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 
+import java.time.Duration;
+
 public class LocalBrowser {
 
     public static void launchWebsite(String url)
     {
+        DriverManager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(12));
         DriverManager.getDriver().get(url);
     }
 
