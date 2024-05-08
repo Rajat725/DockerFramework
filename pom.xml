@@ -110,11 +110,11 @@
                     <version>${maven.surefire.version}</version>
                     <configuration>
                         <systemPropertyVariables>
-                            <selenium.grid.enabled>true</selenium.grid.enabled>
+<!--                            <selenium.grid.enabled>true</selenium.grid.enabled>-->
 <!--                            <browser>chrome</browser>-->
                         </systemPropertyVariables>
                         <suiteXmlFiles>
-                            <file>suites-xml/testng.xml</file>
+                            <file>src/test/resources/suites-xml/testng.xml</file>
                         </suiteXmlFiles>
                         <threadCount>1</threadCount>
                         <reportsDirectory>target/test-output</reportsDirectory>
