@@ -6,7 +6,7 @@ pipeline{
         stage('#002 - Build Docker Image')
         { steps {
         environment{
-         SERVICE_CREDS = credentials('dockerhub-creds')
+         Docker_HUB = credentials('dockerhub-creds')
         }
         bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
         bat "docker build -t=rajat725/dockerframework ."} }
