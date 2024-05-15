@@ -10,7 +10,7 @@
 
 # Let's print what we have received
 echo "-------------------------------------------"
-echo "HUBURL        : ${HUBURL:-http://192.168.1.7:4444}"
+echo "HUBURL        : ${HUBURL:-http://selenium-hub:4444}"
 echo "GRID          : ${GRID:-true}"
 echo "THREAD_COUNT  : ${THREAD_COUNT:-2}"
 echo "TEST_SUITE    : ${XMLFILE:-testng.xml}"
@@ -19,7 +19,7 @@ echo "-------------------------------------------"
 # Do not start the tests immediately. Hub has to be ready with browser nodes
 echo "Checking if hub is ready..!"
 count=0
-while [ "$( curl -s ${HUBURL:-http://192.168.1.7:4444}/status | jq -r .value.ready )" != "true" ]
+while [ "$( curl -s ${HUBURL:-http://selenium-hub:4444}/status | jq -r .value.ready )" != "true" ]
 do
   count=$((count+1))
   echo "Attempt: ${count}"
