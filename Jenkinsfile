@@ -13,9 +13,9 @@ pipeline{
 		 bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
 		 bat "docker push rajat725/dockerframework"} }
 
-         stage('#004 - Starting Grid'){ steps{bat "docker-compose -f grid.yaml up"}}
+         stage('#004 - Starting Grid'){ steps{bat "docker-compose -f grid.yaml up -d"}}
 
-         stage('#005 - Executing Test Cases'){steps{bat "docker-compose -f tests.yaml up"}}
+         stage('#005 - Executing Test Cases'){steps{bat "docker-compose -f tests.yaml up --pull=always"}}
 
     }
 
