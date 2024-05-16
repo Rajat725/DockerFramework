@@ -19,7 +19,7 @@ echo "-------------------------------------------"
 # Do not start the tests immediately. Hub has to be ready with browser nodes
 echo "Checking if hub is ready..!"
 count=0
-while [ "$( curl -s ${HUBURL:-http://selenium-hub:4444}/status | jq -r .value.ready )" != "true" ]
+while [ "$( curl -s http://selenium-hub:4444/status | jq -r .value.ready )" != "true" ]
 do
   count=$((count+1))
   echo "Attempt: ${count}"
