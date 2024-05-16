@@ -1,43 +1,41 @@
 #!/bin/bash
 
 #-------------------------------------------------------------------
-#  This script expects the following environment variables
-#     HUB_HOST
-#     BROWSER
-#     THREAD_COUNT
-#     TEST_SUITE
+# This script expects the following environment variables:
+#   HUBURL (optional, default: http://selenium-hub:4444)
+#   GRID (optional, default: true)
+#   THREAD_COUNT (optional, default: 2)
+#   XMLFILE (optional, default: testng.xml)
 #-------------------------------------------------------------------
 
-# Let's print what we have received
+# Print received environment variables
 echo "-------------------------------------------"
 echo "HUBURL        : ${HUBURL:-http://selenium-hub:4444}"
 echo "GRID          : ${GRID:-true}"
 echo "THREAD_COUNT  : ${THREAD_COUNT:-2}"
-echo "TEST_SUITE    : ${XMLFILE:-testng.xml}"
+echo "XMLFILE       : ${XMLFILE:-testng.xml}"
 echo "-------------------------------------------"
 
-# Do not start the tests immediately. Hub has to be ready with browser nodes
-echo "Checking if hub is ready..!"
+# Check if the hub is ready
+echo "Checking if the hub is ready..."
 count=0
-while [ "$( curl -s http://selenium-hub:4444/status | jq -r .value.ready )" != "true" ]
-do
+while [ "$(curl -s ${HUBURL:-http://selenium-hub:4444}/status | jq -r .value.ready)" != "true" ]; do
   count=$((count+1))
   echo "Attempt: ${count}"
-  if [ "$count" -ge 30 ]
-  then
-      echo "**** HUB IS NOT READY WITHIN 30 SECONDS ****"
-      exit 1
+  if [ "$count" -ge 30 ]; then
+    echo "**** HUB IS NOT READY WITHIN 30 SECONDS ****"
+    exit 1
   fi
   sleep 1
 done
 
-# At this point, selenium grid should be up!
-echo "Selenium Grid is up and running. Running the test...."
+# At this point, Selenium Grid should be up and running
+echo "Selenium Grid is up and running. Running the tests..."
 
-# Start the java command
-java -Dseleniumgridenabled=${GRID} \
-           -Dhuburl=${HUBURL} \
-           -cp 'libs/*' \
-           org.testng.TestNG \
-           -threadcount ${THREAD_COUNT} \
-           suites-xml/${XMLFILE}
+# Start the Java command
+java -Dseleniumgridenabled="${GRID}" \
+     -Dhuburl="${HUBURL}" \
+     -cp 'libs/*' \
+     org.testng.TestNG \
+     -threadcount "${THREAD_COUNT}" \
+     suites-xml/"${XMLFILE}"
