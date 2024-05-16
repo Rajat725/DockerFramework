@@ -27,3 +27,4 @@ java -Dseleniumgridenabled="${GRID}" \
      org.testng.TestNG \
      -threadcount "${THREAD_COUNT}" \
      suites-xml/"${XMLFILE}"
+echo "-------------------------------------------"
