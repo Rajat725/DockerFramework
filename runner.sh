@@ -7,10 +7,12 @@ echo "-------------------------------------------"
 # Check if the hub is ready
 echo "Checking if the hub is ready..."
 count=0
-while [ "$(curl -s ${HUBURL:-http://selenium-hub:4444}/status | jq -r .value.ready)" != "true" ]; do
+while [ "$(curl -s ${HUBURL:-http://selenium-hub:4444}/status | jq -r .value.ready)" != "true" ]
+do
   count=$((count+1))
   echo "Attempt: ${count}"
-  if [ "$count" -ge 30 ]; then
+  if [ "$count" -ge 30 ]
+  then
     echo "**** HUB IS NOT READY WITHIN 30 SECONDS ****"
     exit 1
   fi
