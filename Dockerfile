@@ -1,9 +1,21 @@
 FROM bellsoft/liberica-openjdk-alpine:17
-RUN apk add curl jq
+
+# Install required packages
+RUN apk add --no-cache curl jq dos2unix
+
+# Set the working directory
 WORKDIR /home/DockerFramework
-ADD target/docker-framework-package ./
-ADD runner.sh runner.sh
-ENTRYPOINT sh runner.sh
+
+# Copy your application files
+COPY target/docker-framework-package ./ 
+COPY runner.sh runner.sh
+
+# Convert line endings of runner.sh to Unix format
+RUN dos2unix runner.sh
+
+# Set the entry point for the container
+ENTRYPOINT ["sh", "runner.sh"]
+
 #ENTRYPOINT java -Dseleniumgridenabled=${GRID} \
 #           -Dhuburl=${HUBURL} \
 #           -cp 'libs/*' \
