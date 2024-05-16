@@ -1,21 +1,9 @@
-#!/bin/bash
-
-#-------------------------------------------------------------------
-# This script expects the following environment variables:
-#   HUBURL (optional, default: http://selenium-hub:4444)
-#   GRID (optional, default: true)
-#   THREAD_COUNT (optional, default: 2)
-#   XMLFILE (optional, default: testng.xml)
-#-------------------------------------------------------------------
-
-# Print received environment variables
 echo "-------------------------------------------"
 echo "HUBURL        : ${HUBURL:-http://selenium-hub:4444}"
 echo "GRID          : ${GRID:-true}"
 echo "THREAD_COUNT  : ${THREAD_COUNT:-2}"
 echo "XMLFILE       : ${XMLFILE:-testng.xml}"
 echo "-------------------------------------------"
-
 # Check if the hub is ready
 echo "Checking if the hub is ready..."
 count=0
@@ -28,10 +16,8 @@ while [ "$(curl -s ${HUBURL:-http://selenium-hub:4444}/status | jq -r .value.rea
   fi
   sleep 1
 done
-
 # At this point, Selenium Grid should be up and running
 echo "Selenium Grid is up and running. Running the tests..."
-
 # Start the Java command
 java -Dseleniumgridenabled="${GRID}" \
      -Dhuburl="${HUBURL}" \
