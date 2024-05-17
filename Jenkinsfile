@@ -22,6 +22,7 @@ pipeline{
 	post{
 
 	 always {
+	    archiveArtifacts artifacts: 'output/results/emailable-report.html', followSymlinks: false
         bat "docker logout"
         bat "docker-compose -f grid.yaml down"
         bat "docker-compose -f tests.yaml down"
