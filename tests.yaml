@@ -9,5 +9,6 @@ services:
       - XMLFILE=testng.xml
     volumes:
       - ./output/results:/home/DockerFramework/test-output
+      - ./test.log:/home/DockerFramework/test.log
 
 
