@@ -7,8 +7,8 @@ RUN apk add --no-cache curl jq dos2unix
 WORKDIR /home/DockerFramework
 
 # Copy your application files
-COPY target/docker-framework-package ./ 
-COPY runner.sh runner.sh
+ADD target/docker-framework-package ./
+ADD runner.sh runner.sh
 
 # Convert line endings of runner.sh to Unix format
 RUN dos2unix runner.sh

@@ -5,7 +5,7 @@ services:
     environment:
       - GRID=true
       - THREAD_COUNT=2
-      - HUBURL=http://selenium-hub:4444
+      - HUBURL=http://hub:4444
       - XMLFILE=testng.xml
     volumes:
       - ./output/results:/home/DockerFramework/test-output
